@@ -8,7 +8,7 @@ app.options('*', cors())
 app.use(cors())
 
 
-app.get('/weather-data',(req,res) => {
+app.get('/weather',(req,res) => {
     res.json(weatherData)
 });
 
