@@ -2,14 +2,17 @@ const express = require('express')
 const app = express()
 require('dotenv').config();
 const PORT = process.env.PORT;
-const cors = require('cors');
-const Wdata = require('./data/weather.json')
+var cors = require('cors');
+const weatherData = require('./data/weather.json')
+app.options('*', cors()) 
 app.use(cors())
 
 
 app.get('/weather-data',(req,res) => {
-    res.json(Wdata)
+    res.json(weatherData)
 });
+
+
 
 
 app.listen(PORT, () =>{
