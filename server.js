@@ -1,21 +1,20 @@
+const express = require('express')
+const app = express()
 require('dotenv').config();
-const express = require('express') 
-const cors = require('cors');
-const app = express() 
-const weatherController = require('./controller/weather.controller');
-const movieController = require('./controller/movie.controller');
-const indexController = require('./controller/indes.controller')
-app.use(cors()) 
-
 const PORT = process.env.PORT;
+var cors = require('cors');
+const weatherData = require('./assets/weather.json')
+app.options('*', cors())
+app.use(cors())
 
 
-app.get('/', indexController);
+app.get('/weather-data', (req, res) => {
+    res.json(weatherData)
+});
 
-app.get('/weather', weatherController);
 
-app.get('/movies', movieController);
+
 
 app.listen(PORT, () => {
-    console.log(`Server started on ${PORT}`);
-})
+    console.log(`server started on ${PORT}`)
+});
